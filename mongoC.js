@@ -1,14 +1,16 @@
-import { MongoClient } from "mongodb";
+import dotenv from 'dotenv';
+import {MongoClient} from "mongodb";
 
-const password = encodeURIComponent(process.env.MONGO_PASSWORD.trim());
-const connectionString = `mongodb+srv://integrationninjas:${password}@devcluster.xf2gcci.mongodb.net/?retryWrites=true&w=majority`; // clustore url
-const client = new MongoClient(connectionString);
+dotenv.config();
+
+const client = new MongoClient(process.env.MONGODB_URI);
+
 let conn;
 try {
   conn = await client.connect();
   console.log("connection successful")
-} catch(e) {
+} catch (e) {
   console.error(e);
 }
-let db = conn.db("integration_ninjas");
+let db = conn.db("avukat_sitem");
 export default db;
