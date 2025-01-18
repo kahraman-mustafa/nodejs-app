@@ -19,11 +19,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 // Parses the text as json
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
+app.get('/api/', (req, res) => {
     res.send('Hello World, from express');
 })
 
-app.post('/addUser', async (req, res) => {
+app.post('/api/addUser', async (req, res) => {
     let collection = await db.collection("users");
     let newDocument = req.body;
     newDocument.date = new Date();
@@ -32,7 +32,7 @@ app.post('/addUser', async (req, res) => {
     res.send(result).status(204);
 });
 
-app.get('/getUsers', async (req, res) => {
+app.get('/api/getUsers', async (req, res) => {
     let collection = await db.collection("users");
     let results = await collection.find({})
 
