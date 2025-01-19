@@ -23,6 +23,10 @@ app.get('/api/', (req, res) => {
     res.send('Hello World, from express');
 })
 
+app.get('/qr-business-card/', (req, res) => {
+    res.send('Kartivizitteki QR kodunu okutarak bu sayfaya eriştiniz.');
+})
+
 app.post('/api/addUser', async (req, res) => {
     let collection = await db.collection("users");
     let newDocument = req.body;
